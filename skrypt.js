@@ -1,10 +1,11 @@
     const kalendarz = document.querySelector('.kalendarz'),
         data = document.querySelector('.data'),
         dniBlok = document.querySelector('.dni-rob'),
-        poprzedni = document.querySelector('.przed'),
-        nastepny = document.querySelector('.nast'),
-        tutajPrzycisk = document.querySelector('.tutaj-przyc'),
-        dzisiajPrzycisk = document.querySelector('.dzisiaj-przyc');
+        poprzedni = document.querySelector('.przed');
+        (nastepny = document.querySelector('.nast')),
+        (tutajPrzycisk = document.querySelector('.tutaj-przyc')),
+        (dzisiajPrzycisk = document.querySelector('.dzisiaj-przyc')),
+        (poleData = document.querySelector('.pole-data'));
     
     
     let dzisiaj = new Date();
@@ -98,3 +99,15 @@ function nastepnyMiesiac() {
 // Dodanie funkcjonalnosci strzalkom
 poprzedni.addEventListener("click", poprzedniMiesiac);
 nastepny.addEventListener("click", nastepnyMiesiac);
+
+// Dodanie dzisiajsza data i disiejszy dzien 
+dzisiajPrzycisk.addEventListener("click", () => {
+    dzisiaj = new Date();
+    miesiac = dzisiaj.getMonth();
+    rok = dzisiaj.getFullYear();
+    wKalendarzu();
+});
+
+poleData.addEventListener('input', (e) => {
+    
+})
