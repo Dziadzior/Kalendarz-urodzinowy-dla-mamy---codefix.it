@@ -1,0 +1,242 @@
+:root {
+    --glowny-kolor: rgb(35, 174, 255);
+    --wydarzenie-kolor: yellowgreen;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(69, 255, 255);
+}
+
+.blok {
+    position: relative;
+    display: flex;
+    width: 1200px;
+    min-height: 850px;
+    margin: 0 auto;
+    padding: 10px;
+    color: rgb(211, 211, 211);
+    background-color: rgb(120, 120, 120);
+    border-radius: 15px;
+}
+
+.lewa {
+    width: 90%;
+    padding: 20px;
+}
+
+.kalendarz {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    color: rgb(31, 31, 31);
+    background-color: whitesmoke;
+    border-radius: 8px;
+}
+
+.kalendarz::before,
+.kalendarz::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    width: 12px;
+    height: 97%;
+    background-color:rgb(211, 211, 211);
+    border-radius: 0 5px 5px 0;
+    transform: translateY(-50%);
+}
+
+.kalendarz::before {
+    left: calc(100% + 12px);
+    height: 94%;
+    background-color: rgb(151, 151, 151);
+}
+
+.kalendarz .miesiac {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 140px;
+    padding: 0 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.kalendarz .miesiac .przed,
+.kalendarz .miesiac .nast {
+    cursor: pointer;
+}
+
+.kalendarz .miesiac .przed:hover,
+.kalendarz .miesiac .nast:hover {
+    color: var(--glowny-kolor);
+}
+
+.kalendarz .dni-tyg {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.kalendarz .dni-tyg div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15%;
+    height: 100%;
+}
+
+.kalendarz .dni-rob {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 0 12px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.kalendarz .dni-rob .dzien {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 14%;
+    height: 70px;
+    color: var(--glowny-kolor);
+    border: 1px solid rgb(55, 202, 255);
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.kalendarz .dzien:not(.poprzedni, .nastepny):hover {
+    color: yellow;
+    background-color: var(--glowny-kolor);
+}
+
+.kalendarz .dni-rob .poprzedni,
+.kalendarz .dni-rob .nastepny {
+    color: rgb(156, 156, 156);
+}
+
+.kalendarz .dni-rob .aktywny {
+    position: relative;
+    color: whitesmoke;
+    background-color: var(--glowny-kolor);
+    font-size: 1.3rem;
+}
+
+.kalendarz .dni-rob .aktywny::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 10px 2px var(--glowny-kolor);
+}
+
+.kalendarz .dni-rob .dzis {
+    font-size: 1.9rem;
+}
+
+.kalendarz .dni-rob .wydarzenie {
+    position: relative;
+}
+
+.kalendarz .dni-rob .wydarzenie::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    width: 70%;
+    height: 6px;
+    background-color: var(--wydarzenie-kolor);
+    border-radius: 30px;
+    transform: translateX(-50%);
+}
+
+.kalendarz .wydarzenie:hover::after {
+    background-color: yellow;
+}
+
+.kalendarz .aktywny.wydarzenie {
+    padding-bottom: 10px;
+}
+
+.kalendarz .aktywny.wydarzenie::after {
+    background-color: yellow;
+    bottom: 20%;
+}
+
+.kalendarz .do-dzis {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    gap: 5px;
+    margin-bottom: 20px;
+    padding: 0 20px;
+    color: var(--glowny-kolor);
+}
+
+.kalendarz .do-dzis .tutaj {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--glowny-kolor);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.kalendarz .do-dzis .tutaj button {
+    border: none;
+    border-left: 1px solid var(--glowny-kolor);
+    border-radius: 5px;
+}
+
+.kalendarz .do-dzis input {
+    width: 100%;
+    height: 30px;
+    padding: 0 20px;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    color: var(--glowny-kolor);
+}
+
+.kalendarz .do-dzis button {
+    padding: 5px 10px;
+    border: 1px solid var(--glowny-kolor);
+    border-radius: 5px;
+    color: var(--glowny-kolor);
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.kalendarz .do-dzis button:hover {
+    color: whitesmoke;
+    background-color: var(--glowny-kolor);
+}
+

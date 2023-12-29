@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="design.css" />
+
+    <!-- FontAwesome -->
+    <script
+      src="https://kit.fontawesome.com/264a91385a.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <title>Kalendarz urodzinowy dla Mamy</title>
+  </head>
+  <body>
+    <div class="blok">
+      <div class="lewa">
+        <div class="kalendarz">
+          <div class="miesiac">
+            <i class="fa-solid fa-angles-left przed"></i>
+            <div class="data"></div>
+            <i class="fa-solid fa-angles-right nast"></i>
+          </div>
+          <div class="dni-tyg">
+            <div>Pon</div>
+            <div>Wt</div>
+            <div>Śr</div>
+            <div>Czw</div>
+            <div>Pią</div>
+            <div>Sob</div>
+            <div>Niedz</div>
+          </div>
+          <div class="dni-rob">
+            <!-- Dodanie dni przez JS -->
+          </div>
+          <div class="do-dzis">
+            <div class="tutaj">
+              <input type="text" placeholder="mm/rrrr" class="pole-data" />
+              <button class="tutaj-przyc">Dalej</button>
+            </div>
+            <button class="dzisiaj-przyc">Dzisiaj</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS -->
+    <script src="skrypt.js"></script>
+  </body>
+</html>
