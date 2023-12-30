@@ -325,6 +325,17 @@ body {
     display: flex;
 }
 
+.wydarzenia .nie-wydarzenie {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--glowny-kolor);
+}
+
 .wydarzenia .wydarzenie .tytul {
     display: flex;
     align-items: center;
@@ -488,4 +499,73 @@ body {
 
 .dodaj-wydarzenie-plus i {
     pointer-events: none;
+}
+
+/* Media */
+
+@media (max-width: 1000px) {
+    body {
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .blok {
+        min-height: 100vh;
+        flex-direction: column;
+        border-radius: 0;
+    }
+
+    .blok .lewa,
+    .blok .prawa {
+        width: 100%;
+        height: 100%;
+        padding: 20 0;
+    }
+
+    .kalendarz::before 
+    .kalendarz::after {
+        top: 100%;
+        left: 50%;
+        width: 97%;
+        height: 12px;
+        border-radius: 0 0 5px 5px;
+        transform: translateX(-50%);
+    }
+
+    .kalendarz::before {
+        width: 94%;
+        top: calc(100% + 12px);
+    }
+
+    .wydarzenia {
+        padding-bottom: 340px;
+    }
+
+    .dodaj-wydarzenie-blok {
+        bottom: 100px;
+    }
+}
+
+@media (max-width: 500px) {
+    .kalendarz .miesiac {
+        height: 75px;
+    }
+
+    .kalendarz .dni-tyg {
+        height: 50px;
+    }
+
+    .kalendarz .dni-rob .dzien {
+        height: 40px;
+        font-size: 0.8rem;
+    }
+
+    .kalendarz .dni-rob .dzien.aktywny,
+    .kalendarz .dni-rob .dzien.dzisiaj {
+        font-size: 1rem;
+    }
+
+    .prawa .dzisiaj-data {
+        padding: 20px;
+    }
 }
