@@ -470,7 +470,7 @@ wydarzeniaBlok.addEventListener("click", (e) => {
 					if (item.tytul == wydarzenieTytul) {
 						wydarzenie.wydarzenia.splice(index, 1);
 					}
-				})
+				});
 
 				if (wydarzenie.wydarzenia.length == 0) {
 					wydarzeniaWar.splice(wydarzeniaWar.indexOf(wydarzenie), 1);
