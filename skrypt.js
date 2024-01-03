@@ -373,10 +373,10 @@ dodajWydarzeniePrzy.addEventListener('click', () => {
 	if (
 		wydarzenieTytul == "" ||
 		wydarzenieCzasOd == "" ||
-		wydarzenieCzasDo == ""
+		wydarzenieCzasDo == "" ;
 	) {
 		alert('Prosze wypełnij wszystkie pola');
-	}
+	};
 
 	const czasOdWar = wydarzenieCzasOd.split(":");
 	const czasDoWar = wydarzenieCzasDo.split(":");
