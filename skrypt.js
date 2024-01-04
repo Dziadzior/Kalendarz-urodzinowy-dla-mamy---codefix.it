@@ -373,10 +373,10 @@ dodajWydarzeniePrzy.addEventListener('click', () => {
 	if (
 		wydarzenieTytul == "" ||
 		wydarzenieCzasOd == "" ||
-		wydarzenieCzasDo == ""
-	) {
+		wydarzenieCzasDo == "" 
+	); {
 		alert('Prosze wypełnij wszystkie pola');
-	}
+	};
 
 	const czasOdWar = wydarzenieCzasOd.split(":");
 	const czasDoWar = wydarzenieCzasDo.split(":");
@@ -470,7 +470,7 @@ wydarzeniaBlok.addEventListener("click", (e) => {
 					if (item.tytul == wydarzenieTytul) {
 						wydarzenie.wydarzenia.splice(index, 1);
 					}
-				})
+				});
 
 				if (wydarzenie.wydarzenia.length == 0) {
 					wydarzeniaWar.splice(wydarzeniaWar.indexOf(wydarzenie), 1);
