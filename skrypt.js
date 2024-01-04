@@ -373,8 +373,8 @@ dodajWydarzeniePrzy.addEventListener('click', () => {
 	if (
 		wydarzenieTytul == "" ||
 		wydarzenieCzasOd == "" ||
-		wydarzenieCzasDo == "" ;
-	) {
+		wydarzenieCzasDo == "" 
+	); {
 		alert('Prosze wypełnij wszystkie pola');
 	};
 
