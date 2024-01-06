@@ -9,7 +9,7 @@ const kalendarz = document.querySelector('.kalendarz'),
 	wydarzenieDzien = document.querySelector('.wydarzenie-tendzien'),
 	wydarzenieData = document.querySelector('.wydarzenie-data'),
 	wydarzeniaBlok = document.querySelector('.wydarzenia'),
-	dodajWydarzeniePrzy = document.querySelector('.dodaj-wydarzenie-przycisk')
+	dodajWydarzeniePrzy = document.querySelector('.dodaj-wydarzenie-przycisk');
 
 let dzisiaj = new Date()
 let aktywnyDzien
@@ -61,25 +61,25 @@ const miesiace = [
 // 	},
 // ]
 
-let wydarzeniaWar = []
+let wydarzeniaWar = [];
 
-wezWydarzenia()
+wezWydarzenia();
 
 function wKalendarzu() {
 	// Widok miesiecy i dni
-	const pierwszyDzien = new Date(rok, miesiac, 1)
-	const ostatniDzien = new Date(rok, miesiac + 1, 0)
-	const pokaOstatniDzien = new Date(rok, miesiac, 0)
-	const pokaDni = pokaOstatniDzien.getDate()
-	const ostatniaData = ostatniDzien.getDate()
-	const dzien = pierwszyDzien.getDay()
-	const nastepneDni = 7 - ostatniDzien.getDay() - 1
+	const pierwszyDzien = new Date(rok, miesiac, 1);
+	const ostatniDzien = new Date(rok, miesiac + 1, 0);
+	const pokaOstatniDzien = new Date(rok, miesiac, 0);
+	const pokaDni = pokaOstatniDzien.getDate();
+	const ostatniaData = ostatniDzien.getDate();
+	const dzien = pierwszyDzien.getDay();
+	const nastepneDni = 7 - ostatniDzien.getDay() - 1;
 
 	// Zaktualizuj date na gorze kalendarza
-	data.innerHTML = miesiace[miesiac] + ' ' + rok
+	data.innerHTML = miesiace[miesiac] + ' ' + rok;
 
 	// Dodanie dni na dole
-	let dni = ''
+	let dni = '';
 
 	// Widok miesiecy
 	for (let x = dzien; x > 0; x--) {
@@ -90,12 +90,12 @@ function wKalendarzu() {
 	for (let i = 1; i <= ostatniaData; i++) {
 		// Sprawdz czy sa wydarzenia dla danego dnia
 		let wydarzenie = false
-		wydarzeniaWar.forEach(wydarzeniejObj => {
-			if (wydarzeniejObj.dzien == i && wydarzeniejObj.miesiac == miesiac + 1 && wydarzeniejObj.rok == rok) {
+		wydarzeniaWar.forEach(wydarzenieObj => {
+			if (wydarzenieObj.dzien == i && wydarzenieObj.miesiac == miesiac + 1 && wydarzenieObj.rok == rok) {
 				// Jesli sa jakies wydarzenia
-				wydarzenie = true
-			}
-		})
+				wydarzenie = true;
+			} 
+		});
 
 		// Jesli dzien jest dzisiaj dodaj klase
 		if (i == new Date().getDate() && rok == new Date().getFullYear() && miesiac == new Date().getMonth()) {
@@ -109,9 +109,7 @@ function wKalendarzu() {
 			} else {
 				dni += `<div class="dzien dzisiaj aktywny" >${i}</div>`
 			}
-		}
-		// Dodanie pozostalych dni
-		else {
+		} else {
 			if (wydarzenie) {
 				dni += `<div class="dzien wydarzenie" >${i}</div>`
 			} else {
@@ -127,34 +125,32 @@ function wKalendarzu() {
 
 	dniBlok.innerHTML = dni
 	// Dodaj funkcje nasluchu przed inicjalizacja kalendarza
-	dodajNasluch()
+	dodajNasluch();
 }
-
-wKalendarzu()
 
 // Poprzedni miesiac
 function poprzedniMiesiac() {
-	miesiac--
+	miesiac--;
 	if (miesiac < 0) {
-		miesiac = 11
-		rok--
+		miesiac = 11;
+		rok--;
 	}
-	wKalendarzu()
+	wKalendarzu();
 }
 
 // Nastepny miesiac
 function nastepnyMiesiac() {
-	miesiac++
+	miesiac++;
 	if (miesiac > 11) {
-		miesiac = 0
-		rok++
+		miesiac = 0;
+		rok++;
 	}
-	wKalendarzu()
+	wKalendarzu();
 }
 
 // Dodanie funkcjonalnosci strzalkom
-poprzedni.addEventListener('click', poprzedniMiesiac)
-nastepny.addEventListener('click', nastepnyMiesiac)
+poprzedni.addEventListener('click', poprzedniMiesiac);
+nastepny.addEventListener('click', nastepnyMiesiac);
 
 // Dodanie dzisiajsza data i disiejszy dzien
 dzisiajPrzycisk.addEventListener('click', () => {
@@ -196,7 +192,7 @@ function idzData() {
 			miesiac = dataWar[0] - 1
 			rok = dataWar[1]
 			wKalendarzu()
-			return
+			return;
 		}
 	}
 
@@ -261,19 +257,19 @@ dodajWydarzenieDok.addEventListener('input', e => {
 // Dodanie funkcji dla sluchania na dni po zaladowaniu
 function dodajNasluch() {
 	const dni = document.querySelectorAll('.dzien')
-	dni.forEach(dzien => {
+	dni.forEach((dzien) => {
 		dzien.addEventListener('click', e => {
 			// Ustaw obecny dzien jako aktywny
-			aktywnyDzien = Number(e.target.innerHTML)
+			aktywnyDzien = Number(e.target.innerHTML);
 
 			// Aktywny dzien po kliknieciu
-			wezAktywnyDzien(e.target.innerHTML)
-			aktualizujWydarzenia(Number(e.target.innerHTML))
+			wezAktywnyDzien(e.target.innerHTML);
+			aktualizujWydarzenia(Number(e.target.innerHTML));
 
 			// Usun aktywny z dnia
-			dni.forEach(dzien => {
+			dni.forEach((dzien) => {
 				dzien.classList.remove('aktywny')
-			})
+			});
 
 			// Jesli poprzedni miesiac kliknelismy idz do poprzedniego miesiaca i dodaj aktywny
 			if (e.target.classList.contains('poprzedni')) {
@@ -284,11 +280,11 @@ function dodajNasluch() {
 					const dni = document.querySelectorAll('.dzien')
 
 					// Przed przejsciem do poprzedniego miesiaca dodaj aktywny
-					dni.forEach(dzien => {
-						if (!dni.classList.contains('poprzedni') && dni.innerHTML == e.target.innerHTML) {
+					dni.forEach((dzien) => {
+						if (!dzien.classList.contains('poprzedni') && dzien.innerHTML == e.target.innerHTML) {
 							dzien.classList.add('aktywny')
 						}
-					})
+					});
 				}, 100)
 				// Tak samo z nastepnymi miesiacami
 			} else if (e.target.classList.contains('nastepny')) {
@@ -299,8 +295,8 @@ function dodajNasluch() {
 					const dni = document.querySelectorAll('.dzien')
 
 					// Przed przejsciem do poprzedniego miesiaca dodaj aktywny
-					dni.forEach(dzien => {
-						if (!dni.classList.contains('nastepny') && dni.innerHTML == e.target.innerHTML) {
+					dni.forEach((dzien) => {
+						if (!dzien.classList.contains('nastepny') && dzien.innerHTML == e.target.innerHTML) {
 							dzien.classList.add('aktywny')
 						}
 					})
@@ -308,8 +304,8 @@ function dodajNasluch() {
 			} else {
 				e.target.classList.add('aktywny')
 			}
-		})
-	})
+		});
+	});
 }
 
 // Pokaz aktywne wydarzenia dnia i date na gorze
@@ -351,9 +347,11 @@ function aktualizujWydarzenia(data) {
 	</div>`
 	}
 
-	wydarzeniaBlok.innerHTML = wydarzenia
-	zapiszWydarzenia()
+wydarzeniaBlok.innerHTML = wydarzenia;
+zapiszWydarzenia();
 }
+
+
 
 // Funkcja stworzenia wydarzenia
 dodajWydarzeniePrzy.addEventListener('click', () => {
@@ -362,13 +360,16 @@ dodajWydarzeniePrzy.addEventListener('click', () => {
 	const wydarzenieCzasDo = dodajWydarzenieDok.value
 
 	// Kilka weryfikacji
-	if (wydarzenieTytul == '' || wydarzenieCzasOd == '' || wydarzenieCzasDo == '');
-	{
-		alert('Prosze wypełnij wszystkie pola')
-	}
+	if (
+		wydarzenieTytul == "" ||
+		wydarzenieCzasOd == "" ||
+		wydarzenieCzasDo == "" 
+	); {
+		alert('Prosze wypełnij wszystkie pola');
+	};
 
-	const czasOdWar = wydarzenieCzasOd.split(':')
-	const czasDoWar = wydarzenieCzasDo.split(':')
+	const czasOdWar = wydarzenieCzasOd.split(":");
+	const czasDoWar = wydarzenieCzasDo.split(":");
 
 	if (
 		czasOdWar.length != 2 ||
@@ -378,11 +379,11 @@ dodajWydarzeniePrzy.addEventListener('click', () => {
 		czasDoWar[0] > 23 ||
 		czasDoWar[1] > 59
 	) {
-		alert('Niepoprawny format daty')
+		alert("Niepoprawny format daty")
 	}
 
-	const czasOd = convertTime(wydarzenieCzasOd)
-	const czasDo = convertTime(wydarzenieCzasDo)
+	const czasOd = convertTime(wydarzenieCzasOd);
+	const czasDo = convertTime(wydarzenieCzasDo);
 
 	const noweWydarzenie = {
 		tytul: wydarzenieTytul,
@@ -440,11 +441,15 @@ function convertTime(czas) {
 }
 
 // Dodaj funkcje do usuwania wydarzen na klik
-wydarzeniaBlok.addEventListener('click', e => {
-	if (e.target.classList.contains('wydarzenie')) {
-		const wydarzenieTytul = e.target.children[0].children[1].innerHTML
-		wydarzenie.forEach(wydarzenie => {
-			if (wydarzenie.dzien == aktywnyDzien && wydarzenie.miesiac == miesiac + 1 && wydarzenie.rok == rok) {
+wydarzeniaBlok.addEventListener("click", (e) => {
+	if (e.target.classList.contains("wydarzenie")) {
+		const wydarzenieTytul = e.target.children[0].children[1].innerHTML;
+		wydarzenie.forEach((wydarzenie) => {
+			if (
+				wydarzenie.dzien == aktywnyDzien &&
+				wydarzenie.miesiac == miesiac + 1 &&
+				wydarzenie.rok == rok
+			) {
 				wydarzenie.wydarzenia.forEach((item, index) => {
 					if (item.tytul == wydarzenieTytul) {
 						wydarzenie.wydarzenia.splice(index, 1)
@@ -452,7 +457,7 @@ wydarzeniaBlok.addEventListener('click', e => {
 				})
 
 				if (wydarzenie.wydarzenia.length == 0) {
-					wydarzeniaWar.splice(wydarzeniaWar.indexOf(wydarzenie), 1)
+					wydarzeniaWar.splice(wydarzeniaWar.indexOf(wydarzenie), 1);
 
 					const aktywnyDzienElement = document.querySelector('.dzien.aktywny')
 					if (aktywnyDzienElement.classList.contains('wydarzenie')) {
@@ -461,18 +466,18 @@ wydarzeniaBlok.addEventListener('click', e => {
 				}
 			}
 		})
-		aktualizujWydarzenia(aktywnyDzien)
+		aktualizujWydarzenia(aktywnyDzien);
 	}
 })
 
 function zapiszWydarzenia() {
-	localStorage.setItem('wydarzenia', JSON.stringify(wydarzeniaWar))
+	localStorage.setItem("wydarzenia", JSON.stringify(wydarzeniaWar));
 }
 
 function wezWydarzenia() {
-	if (localStorage.getItem('wydarzenia' != null)) {
-		return
+	if (localStorage.getItem("wydarzenia" != null)) {
+		return;
 	}
 
-	wydarzeniaWar.push(...JSON.parse(localStorage.getItem('wydarzenia')))
+	wydarzeniaWar.push( ... JSON.parse(localStorage.getItem("wydarzenia")));
 }
