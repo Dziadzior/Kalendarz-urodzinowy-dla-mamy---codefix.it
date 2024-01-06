@@ -9,7 +9,7 @@ const kalendarz = document.querySelector('.kalendarz'),
 	wydarzenieDzien = document.querySelector('.wydarzenie-tendzien'),
 	wydarzenieData = document.querySelector('.wydarzenie-data'),
 	wydarzeniaBlok = document.querySelector('.wydarzenia'),
-	dodajWydarzeniePrzy = document.querySelector('.dodaj-wydarzenie-przycisk');
+	dodajWydarzeniePrzy = document.querySelector('.dodaj-wydarzenie-przycisk')
 
 let dzisiaj = new Date()
 let aktywnyDzien
@@ -61,9 +61,9 @@ const miesiace = [
 // 	},
 // ]
 
-let wydarzeniaWar = [];
+let wydarzeniaWar = []
 
-wezWydarzenia();
+wezWydarzenia()
 
 function wKalendarzu() {
 	// Widok miesiecy i dni
@@ -99,10 +99,9 @@ function wKalendarzu() {
 
 		// Jesli dzien jest dzisiaj dodaj klase
 		if (i == new Date().getDate() && rok == new Date().getFullYear() && miesiac == new Date().getMonth()) {
-
-			aktywnyDzien = i;
-			wezAktywnyDzien(i);
-			aktualizujWydarzenia(i);
+			aktywnyDzien = i
+			wezAktywnyDzien(i)
+			aktualizujWydarzenia(i)
 
 			// Jesli sa wydarzenia rowniez dodaj wydarzenia klase
 			if (wydarzenie) {
@@ -265,11 +264,11 @@ function dodajNasluch() {
 	dni.forEach(dzien => {
 		dzien.addEventListener('click', e => {
 			// Ustaw obecny dzien jako aktywny
-			aktywnyDzien = Number(e.target.innerHTML);
+			aktywnyDzien = Number(e.target.innerHTML)
 
 			// Aktywny dzien po kliknieciu
-			wezAktywnyDzien(e.target.innerHTML);
-			aktualizujWydarzenia(Number(e.target.innerHTML));
+			wezAktywnyDzien(e.target.innerHTML)
+			aktualizujWydarzenia(Number(e.target.innerHTML))
 
 			// Usun aktywny z dnia
 			dni.forEach(dzien => {
@@ -315,7 +314,6 @@ function dodajNasluch() {
 
 // Pokaz aktywne wydarzenia dnia i date na gorze
 
-
 function wezAktywnyDzien(data) {
 	const dzien = new Date(rok, miesiac, data)
 	const nazwaDnia = dzien.toString().split(' ')[0]
@@ -323,19 +321,14 @@ function wezAktywnyDzien(data) {
 	wydarzenieData.innerHTML = data + ' ' + miesiace[miesiac] + ' ' + rok
 }
 
-
 // Funkcja do pokazania wydarzen danego dnia
 function aktualizujWydarzenia(data) {
-	let wydarzenia = "";
-	wydarzeniaWar.forEach((wydarzenie) => {
+	let wydarzenia = ''
+	wydarzeniaWar.forEach(wydarzenie => {
 		// Tylko dany dzien wydarzenia
-		if (
-			data == wydarzenie.dzien &&
-			miesiac + 1 == wydarzenie.miesiac &&
-			rok == wydarzenie.rok
-		) {
+		if (data == wydarzenie.dzien && miesiac + 1 == wydarzenie.miesiac && rok == wydarzenie.rok) {
 			// Potem pokaz wydarzenie w kalendarzu
-			wydarzenie.wydarzenia.forEach((wydarzenie) => {
+			wydarzenie.wydarzenia.forEach(wydarzenie => {
 				wydarzenia += `
 				<div class="wydarzenie">
 					<div class="tytul">
@@ -346,40 +339,36 @@ function aktualizujWydarzenia(data) {
 						<span class="wydarzenie-czas">${wydarzenie.czas}</span>
 					</div>
 				</div>
-				`;
+				`
 			})
 		}
 	})
 
 	// Jesli nic nie bedzie
-if ((wydarzenia == "")) {
-	wydarzenia = 
-	`<div class="nie-wydarzenie">
+	if (wydarzenia == '') {
+		wydarzenia = `<div class="nie-wydarzenie">
 		<h3>Nie ma wydarzenia</h3>
-	</div>`;
-}
+	</div>`
+	}
 
-wydarzeniaBlok.innerHTML = wydarzenia;
-zapiszWydarzenia();
+	wydarzeniaBlok.innerHTML = wydarzenia
+	zapiszWydarzenia()
 }
 
 // Funkcja stworzenia wydarzenia
 dodajWydarzeniePrzy.addEventListener('click', () => {
-	const wydarzenieTytul = dodajWydarzenieTytul.value;
-	const wydarzenieCzasOd = dodajWydarzenieOd.value;
-	const wydarzenieCzasDo = dodajWydarzenieDok.value;
+	const wydarzenieTytul = dodajWydarzenieTytul.value
+	const wydarzenieCzasOd = dodajWydarzenieOd.value
+	const wydarzenieCzasDo = dodajWydarzenieDok.value
 
 	// Kilka weryfikacji
-	if (
-		wydarzenieTytul == "" ||
-		wydarzenieCzasOd == "" ||
-		wydarzenieCzasDo == "" 
-	); {
-		alert('Prosze wypełnij wszystkie pola');
-	};
+	if (wydarzenieTytul == '' || wydarzenieCzasOd == '' || wydarzenieCzasDo == '');
+	{
+		alert('Prosze wypełnij wszystkie pola')
+	}
 
-	const czasOdWar = wydarzenieCzasOd.split(":");
-	const czasDoWar = wydarzenieCzasDo.split(":");
+	const czasOdWar = wydarzenieCzasOd.split(':')
+	const czasDoWar = wydarzenieCzasDo.split(':')
 
 	if (
 		czasOdWar.length != 2 ||
@@ -389,37 +378,33 @@ dodajWydarzeniePrzy.addEventListener('click', () => {
 		czasDoWar[0] > 23 ||
 		czasDoWar[1] > 59
 	) {
-		alert("Niepoprawny format daty")
+		alert('Niepoprawny format daty')
 	}
 
-	const czasOd = convertTime(wydarzenieCzasOd);
-	const czasDo = convertTime(wydarzenieCzasDo);
+	const czasOd = convertTime(wydarzenieCzasOd)
+	const czasDo = convertTime(wydarzenieCzasDo)
 
 	const noweWydarzenie = {
 		tytul: wydarzenieTytul,
-		czas: czasOd + " - " + czasDo,
-	};
+		czas: czasOd + ' - ' + czasDo,
+	}
 
-	let wydarzenieDodane = false;
+	let wydarzenieDodane = false
 
 	// Sprawdz czy wydarzeniaWar jest puste
 	if (wydarzeniaWar.length > 0) {
 		// Sprawdz jesli w obecnym dniu jest dodanie wydarzenie
-		wydarzeniaWar.forEach((item) => {
-			if (
-				item.dzien == aktywnyDzien &&
-				item.miesiac == miesiac + 1 &&
-				item.rok == rok
-			) {
-				item.wydarzenia.push(noweWydarzenie);
-				wydarzenieDodane = true;
+		wydarzeniaWar.forEach(item => {
+			if (item.dzien == aktywnyDzien && item.miesiac == miesiac + 1 && item.rok == rok) {
+				item.wydarzenia.push(noweWydarzenie)
+				wydarzenieDodane = true
 			}
-		});
+		})
 	}
 
 	// Jesli jest puste albo w obecnym dniu nie ma wydarzenia stworz je
 	if (!wydarzenieDodane) {
-		wydarzeniaWar.push( {
+		wydarzeniaWar.push({
 			dzien: aktywnyDzien,
 			miesiac: miesiac + 1,
 			rok: rok,
@@ -428,72 +413,66 @@ dodajWydarzeniePrzy.addEventListener('click', () => {
 	}
 
 	// Usun aktywny z dodanie wydarzenia
-	dodajWydarzenieBlok.classList.remove("aktywny");
+	dodajWydarzenieBlok.classList.remove('aktywny')
 	// Wyczysc
-	dodajWydarzenieTytul.value = "";
-	dodajWydarzenieOd.value = "";
-	dodajWydarzenieDok.value = "";
+	dodajWydarzenieTytul.value = ''
+	dodajWydarzenieOd.value = ''
+	dodajWydarzenieDok.value = ''
 
 	// Pokaz dodane wydarzenie
-	aktualizujWydarzenia(aktywnyDzien);
+	aktualizujWydarzenia(aktywnyDzien)
 
 	// Rowniez dodaj wydarzenie do nowo dodanego jesli nie jest
-	const aktywnyDzienElement = document.querySelector('.dzien.aktywny');
+	const aktywnyDzienElement = document.querySelector('.dzien.aktywny')
 	if (!aktywnyDzienElement.classList.contains('wydarzenie')) {
-		aktywnyDzienElement.classList.add("wydarzenie");
+		aktywnyDzienElement.classList.add('wydarzenie')
 	}
-
-});
-
+})
 
 function convertTime(czas) {
-	let czasWar = czas.split(":");
-	let czasGodzina = czasWar[0];
-	let czasMinuta = czasWar[1];
-	let czasFormat = czasGodzina >= 12;
-	czasGodzina = czasGodzina % 12 || 12;
-	czas = czasGodzina + ":" + czasMinuta + " "  + czasFormat;
-	return czas;
+	let czasWar = czas.split(':')
+	let czasGodzina = czasWar[0]
+	let czasMinuta = czasWar[1]
+	let czasFormat = czasGodzina >= 12
+	czasGodzina = czasGodzina % 12 || 12
+	czas = czasGodzina + ':' + czasMinuta + ' ' + czasFormat
+	return czas
 }
 
 // Dodaj funkcje do usuwania wydarzen na klik
-wydarzeniaBlok.addEventListener("click", (e) => {
-	if (e.target.classList.contains("wydarzenie")) {
-		const wydarzenieTytul = e.target.children[0].children[1].innerHTML;
-		wydarzenie.forEach((wydarzenie) => {
-			if (
-				wydarzenie.dzien == aktywnyDzien &&
-				wydarzenie.miesiac == miesiac + 1 &&
-				wydarzenie.rok == rok
-			) {
+wydarzeniaBlok.addEventListener('click', e => {
+	if (e.target.classList.contains('wydarzenie')) {
+		const wydarzenieTytul = e.target.children[0].children[1].innerHTML
+		wydarzenie.forEach(wydarzenie => {
+			if (wydarzenie.dzien == aktywnyDzien && wydarzenie.miesiac == miesiac + 1 && wydarzenie.rok == rok) {
 				wydarzenie.wydarzenia.forEach((item, index) => {
 					if (item.tytul == wydarzenieTytul) {
-						wydarzenie.wydarzenia.splice(index, 1);
+						wydarzenie.wydarzenia.splice(index, 1)
 					}
-				});
+				})
 
 				if (wydarzenie.wydarzenia.length == 0) {
-					wydarzeniaWar.splice(wydarzeniaWar.indexOf(wydarzenie), 1);
+					wydarzeniaWar.splice(wydarzeniaWar.indexOf(wydarzenie), 1)
 
-					const aktywnyDzienElement = document.querySelector(".dzien.aktywny");
-					if (aktywnyDzienElement.classList.contains("wydarzenie")) {
-						aktywnyDzienElement.classList.remove("wydarzenie");
+					const aktywnyDzienElement = document.querySelector('.dzien.aktywny')
+					if (aktywnyDzienElement.classList.contains('wydarzenie')) {
+						aktywnyDzienElement.classList.remove('wydarzenie')
 					}
 				}
 			}
 		})
-		aktualizujWydarzenia(aktywnyDzien);
+		aktualizujWydarzenia(aktywnyDzien)
 	}
 })
 
 function zapiszWydarzenia() {
-	localStorage.setItem("wydarzenia", JSON.stringify(wydarzeniaWar));
+	localStorage.setItem('wydarzenia', JSON.stringify(wydarzeniaWar))
 }
 
 function wezWydarzenia() {
-	if (localStorage.getItem("wydarzenia" != null)) {
-		return;
+	if (localStorage.getItem('wydarzenia' != null)) {
+		return
 	}
 
-	wydarzeniaWar.push( ... JSON.parse(localStorage.getItem("wydarzenia")));
+	wydarzeniaWar.push(...JSON.parse(localStorage.getItem('wydarzenia')))
 }
